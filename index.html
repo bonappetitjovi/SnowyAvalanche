@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNOWY - THE AVALANCHE ALPHA</title>
+    <link rel="icon" type="image/jpeg" href="snowy.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+        
+        body {
+            font-family: 'Black Ops One', cursive;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="15" font-size="20">❄️</text></svg>'), auto;
+        }
+
+        @keyframes blizzard {
+            0% { transform: translateY(-100vh) translateX(-50px) rotate(0deg) scale(1); }
+            50% { transform: translateY(50vh) translateX(50px) rotate(180deg) scale(1.5); }
+            100% { transform: translateY(150vh) translateX(-50px) rotate(360deg) scale(0.5); }
+        }
+        @keyframes wildShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            10% { transform: translate(-10px, 10px) rotate(-5deg) scale(1.05); }
+            20% { transform: translate(10px, -10px) rotate(5deg) scale(0.95); }
+            30% { transform: translate(-10px, -10px) rotate(-3deg) scale(1.03); }
+            40% { transform: translate(10px, 10px) rotate(3deg) scale(0.97); }
+            50% { transform: translate(-8px, 8px) rotate(-4deg) scale(1.02); }
+            60% { transform: translate(8px, -8px) rotate(4deg) scale(0.98); }
+            70% { transform: translate(-10px, -5px) rotate(-2deg) scale(1.01); }
+            80% { transform: translate(10px, 5px) rotate(2deg) scale(0.99); }
+            90% { transform: translate(-5px, 10px) rotate(-1deg) scale(1.04); }
+        }
+        @keyframes insaneGlitch {
+            0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+            10% { transform: translate(-20px, 10px) skew(-5deg); filter: hue-rotate(90deg); }
+            20% { transform: translate(20px, -10px) skew(5deg); filter: hue-rotate(180deg); }
+            30% { transform: translate(-15px, -15px) skew(-3deg); filter: hue-rotate(270deg); }
+            40% { transform: translate(15px, 15px) skew(3deg); filter: hue-rotate(360deg); }
+            50% { transform: translate(-10px, 20px) skew(-2deg); filter: hue-rotate(90deg); }
+            60% { transform: translate(10px, -20px) skew(2deg); filter: hue-rotate(180deg); }
+            70% { transform: translate(-20px, -10px) skew(-4deg); filter: hue-rotate(270deg); }
+            80% { transform: translate(20px, 10px) skew(4deg); filter: hue-rotate(360deg); }
+            90% { transform: translate(-10px, -10px) skew(-1deg); filter: hue-rotate(90deg); }
+            100% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+        }
+        @keyframes ragingPulse {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #00ffff,
+                    0 0 100px #00ffff, 0 0 120px #00ffff, 0 0 140px #00ffff;
+                transform: scale(1);
+            }
+            25% { 
+                text-shadow: 
+                    0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 90px #ff0000, 0 0 120px #ff0000,
+                    0 0 150px #ff0000, 0 0 180px #ff0000, 0 0 210px #ff0000;
+                transform: scale(1.1);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 20px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #00ff00,
+                    0 0 100px #00ff00, 0 0 120px #00ff00, 0 0 140px #00ff00;
+                transform: scale(1.05);
+            }
+            75% { 
+                text-shadow: 
+                    0 0 30px #ffff00, 0 0 60px #ffff00, 0 0 90px #ffff00, 0 0 120px #ffff00,
+                    0 0 150px #ffff00, 0 0 180px #ffff00, 0 0 210px #ffff00;
+                transform: scale(1.08);
+            }
+        }
+        @keyframes avalanche {
+            0% { transform: translateY(-200%) rotate(-45deg) scale(2); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(200vh) rotate(45deg) scale(0.5); opacity: 0; }
+        }
+        @keyframes iceSpike {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.5); }
+        }
+        @keyframes chaosFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            10% { transform: translateY(-50px) rotate(36deg) scale(1.1); }
+            20% { transform: translateY(-20px) rotate(-36deg) scale(0.9); }
+            30% { transform: translateY(-70px) rotate(72deg) scale(1.15); }
+            40% { transform: translateY(-30px) rotate(-72deg) scale(0.85); }
+            50% { transform: translateY(-90px) rotate(108deg) scale(1.2); }
+            60% { transform: translateY(-40px) rotate(-108deg) scale(0.95); }
+            70% { transform: translateY(-60px) rotate(144deg) scale(1.05); }
+            80% { transform: translateY(-25px) rotate(-144deg) scale(1.1); }
+            90% { transform: translateY(-80px) rotate(180deg) scale(0.9); }
+        }
+        @keyframes frostBurn {
+            0%, 100% { 
+                box-shadow: 0 0 40px #00ffff, 0 0 80px #00ffff, inset 0 0 40px rgba(255,255,255,0.5);
+                border-color: #00ffff;
+            }
+            25% { 
+                box-shadow: 0 0 60px #ff0000, 0 0 120px #ff0000, inset 0 0 60px rgba(255,0,0,0.5);
+                border-color: #ff0000;
+            }
+            50% { 
+                box-shadow: 0 0 50px #ffffff, 0 0 100px #ffffff, inset 0 0 50px rgba(255,255,255,0.8);
+                border-color: #ffffff;
+            }
+            75% { 
+                box-shadow: 0 0 60px #00ff00, 0 0 120px #00ff00, inset 0 0 60px rgba(0,255,0,0.5);
+                border-color: #00ff00;
+            }
+        }
+        
+        .blizzard { animation: blizzard linear infinite; }
+        .wildShake { animation: wildShake 0.3s ease-in-out infinite; }
+        .insaneGlitch { animation: insaneGlitch 0.2s infinite; }
+        .ragingPulse { animation: ragingPulse 1.5s ease-in-out infinite; }
+        .avalanche { animation: avalanche linear infinite; }
+        .iceSpike { animation: iceSpike 2s ease-in-out infinite; }
+        .chaosFloat { animation: chaosFloat 5s ease-in-out infinite; }
+        .frostBurn { animation: frostBurn 2s ease-in-out infinite; }
+        
+        .whiteout {
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255,255,255,0.9) 0%, 
+                rgba(200,230,255,0.8) 25%,
+                rgba(150,200,255,0.7) 50%,
+                rgba(100,150,255,0.6) 75%,
+                rgba(50,100,200,0.5) 100%);
+        }
+        
+        .ice-texture {
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,255,255,0.1) 10px, rgba(0,255,255,0.1) 20px),
+                linear-gradient(180deg, rgba(255,255,255,0.95), rgba(200,230,255,0.9));
+        }
+        
+        .savage-frost {
+            border: 5px solid #ffffff;
+            box-shadow: 
+                0 0 30px #ffffff,
+                0 0 60px #00ffff,
+                inset 0 0 30px rgba(255,255,255,0.5),
+                0 0 90px rgba(0,255,255,0.5);
+        }
+        
+        .meme-chaos:hover {
+            transform: scale(1.2) rotate(15deg) !important;
+            box-shadow: 0 0 80px #ffffff, 0 0 120px #00ffff, 0 0 160px #ff0000 !important;
+            z-index: 100;
+        }
+
+        .snow-text {
+            color: #ffffff;
+            text-shadow: 
+                0 0 10px #ffffff,
+                0 0 20px #ffffff,
+                0 0 30px #00ffff,
+                0 0 40px #00ffff,
+                0 0 50px #00ffff,
+                3px 3px 10px #000;
+        }
+
+        .blood-frost {
+            text-shadow: 
+                0 0 20px #ff0000,
+                0 0 40px #ff0000,
+                0 0 60px #ffffff,
+                3px 3px 15px #000;
+        }
+    </style>
+</head>
+<body class="min-h-screen whiteout relative overflow-x-hidden">
+    <!-- INSANE BLIZZARD LAYER 1 -->
+    <div id="blizzard1" class="fixed inset-0 pointer-events-none z-50"></div>
+    
+    <!-- INSANE BLIZZARD LAYER 2 -->
+    <div id="blizzard2" class="fixed inset-0 pointer-events-none z-40"></div>
+    
+    <!-- AVALANCHE CHUNKS -->
+    <div id="avalanche" class="fixed inset-0 pointer-events-none z-30"></div>
+
+    <!-- ICE SPIKES -->
+    <div class="fixed bottom-0 left-0 right-0 flex justify-around pointer-events-none z-20">
+        <div class="w-0 h-0 border-l-[50px] border-r-[50px] border-b-[200px] border-l-transparent border-r-transparent border-b-white opacity-70 iceSpike" style="animation-delay: 0s;"></div>
+        <div class="w-0 h-0 border-l-[40px] border-r-[40px] border-b-[150px] border-l-transparent border-r-transparent border-b-cyan-200 opacity-60 iceSpike" style="animation-delay: 0.3s;"></div>
+        <div class="w-0 h-0 border-l-[60px] border-r-[60px] border-b-[250px] border-l-transparent border-r-transparent border-b-white opacity-80 iceSpike" style="animation-delay: 0.6s;"></div>
+        <div class="w-0 h-0 border-l-[45px] border-r-[45px] border-b-[180px] border-l-transparent border-r-transparent border-b-cyan-300 opacity-70 iceSpike" style="animation-delay: 0.9s;"></div>
+        <div class="w-0 h-0 border-l-[55px] border-r-[55px] border-b-[220px] border-l-transparent border-r-transparent border-b-white opacity-75 iceSpike" style="animation-delay: 1.2s;"></div>
+    </div>
+
+    <div class="relative z-10 container mx-auto px-4 py-8">
+        <!-- ABSOLUTELY UNHINGED HEADER -->
+        <header class="text-center mb-12 relative">
+            <div class="mb-8 chaosFloat" id="mainHeader">
+                <h1 class="text-[12rem] font-black mb-4 ragingPulse snow-text uppercase" style="letter-spacing: 0.2em; line-height: 0.9;">
+                    SNOWY
+                </h1>
+                <div class="text-red-600 text-4xl font-black tracking-widest wildShake blood-frost uppercase">
+                    ⚠️🌨️ WHITEOUT WARNING 🌨️⚠️
+                </div>
+            </div>
+            
+            <div class="ice-texture savage-frost p-12 max-w-5xl mx-auto mb-12 transform hover:scale-105 transition-all frostBurn">
+                <h2 class="text-6xl font-black mb-8 snow-text uppercase tracking-wider wildShake">
+                    💀 ABSOLUTE ZERO SAVAGERY 💀
+                </h2>
+                <p class="text-gray-900 text-2xl font-black leading-relaxed mb-6">
+                    BORN IN THE HEART OF AN ETERNAL BLIZZARD WHERE EVEN DEATH ITSELF FROZE TO DEATH. SNOWY ISN'T JUST A PREDATOR—SNOWY IS THE STORM. TEETH LIKE ICICLES. CLAWS LIKE GLACIERS. EYES THAT PIERCE YOUR SOUL AND FREEZE IT SOLID.
+                </p>
+                <p class="text-gray-900 text-2xl font-black leading-relaxed mb-6">
+                    THE MOUNTAIN DOESN'T JUST TREMBLE—IT SHATTERS. THE AVALANCHE DOESN'T JUST FALL—IT DEVOURS. YOUR PORTFOLIO? BURIED 6 FEET UNDER PERMAFROST.
+                </p>
+                <p class="text-cyan-600 text-4xl font-black uppercase wildShake">
+                    🏔️ CATCH THE BLIZZARD OR BECOME IT 🏔️
+                </p>
+                <p class="text-red-600 text-5xl font-black mt-8 uppercase ragingPulse">
+                    NO SURVIVORS. ONLY LEGENDS.
+                </p>
+            </div>
+        </header>
+        
+        <!-- SAVAGE CONTRACT SECTION -->
+        <div class="max-w-6xl mx-auto mb-20">
+            <div class="ice-texture savage-frost p-10 mb-12 chaosFloat frostBurn">
+                <h3 class="text-5xl font-black mb-6 text-center uppercase snow-text wildShake">
+                    ❄️💎 CONTRACT ADDRESS 💎❄️
+                </h3>
+                <div class="flex items-center justify-center gap-6 flex-wrap">
+                    <code class="text-2xl text-gray-900 bg-white/80 border-4 border-cyan-500 px-8 py-6 font-mono break-all font-black shadow-2xl" id="contractAddress">
+                        0x1234567890abcdef1234567890abcdef12345678
+                    </code>
+                    <button
+                        onclick="copyContract()"
+                        id="copyBtn"
+                        class="bg-white text-black hover:bg-cyan-500 hover:text-white px-12 py-6 font-black text-2xl uppercase transition-all transform hover:scale-125 border-8 border-cyan-400 hover:border-white wildShake shadow-2xl">
+                        <span id="copyText">📋 COPY NOW</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- EXTREME BUTTONS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a
+                    href="https://dexscreener.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="ice-texture savage-frost p-12 text-center group transform hover:scale-125 transition-all hover:rotate-6 frostBurn">
+                    <div class="text-9xl mb-4 chaosFloat">📊</div>
+                    <div class="text-5xl font-black text-gray-900 mb-3 wildShake">DEXSCREENER</div>
+                    <div class="text-cyan-600 font-black text-2xl">WATCH THE CARNAGE</div>
+                </a>
+                
+                <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="ice-texture savage-frost p-12 text-center group transform hover:scale-125 transition-all hover:-rotate-6 frostBurn">
+                    <div class="text-9xl mb-4 chaosFloat">❄️</div>
+                    <div class="text-5xl font-black text-gray-900 mb-3 wildShake">X / TWITTER</div>
+                    <div class="text-cyan-600 font-black text-2xl">JOIN THE STORM</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- ABSOLUTE CHAOS MEME ZONE -->
+        <div class="mb-20">
+            <h2 class="text-9xl font-black text-center mb-6 uppercase ragingPulse snow-text wildShake">
+                🌨️ MEME AVALANCHE 🌨️
+            </h2>
+            <p class="text-center text-red-600 text-5xl font-black mb-12 blood-frost wildShake uppercase">
+                💀 INCOMING DESTRUCTION 💀
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="memeGallery">
+                <!-- Memes generated by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- MENACING FOOTER -->
+        <footer class="text-center py-16 ice-texture savage-frost frostBurn">
+            <div class="text-red-600 text-4xl font-black mb-6 uppercase blood-frost wildShake">
+                ⚠️💀 ENTER THE WHITEOUT AT YOUR OWN RISK 💀⚠️
+            </div>
+            <p class="text-gray-900 text-2xl font-black mb-8">
+                THIS ISN'T A GAME. THIS IS SURVIVAL. SNOWY DOESN'T DO MERCY.
+            </p>
+            <div class="text-5xl font-black uppercase snow-text ragingPulse">
+                🏔️ SNOWY 2024 - THE BLIZZARD NEVER ENDS 🏔️
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // EXTREME BLIZZARD LAYER 1
+        const blizzard1 = document.getElementById('blizzard1');
+        for (let i = 0; i < 200; i++) {
+            const flake = document.createElement('div');
+            flake.className = 'absolute text-white blizzard';
+            flake.textContent = '❄';
+            flake.style.left = `${Math.random() * 100}%`;
+            flake.style.top = `-${Math.random() * 20}vh`;
+            flake.style.fontSize = `${15 + Math.random() * 40}px`;
+            flake.style.animationDuration = `${1 + Math.random() * 3}s`;
+            flake.style.animationDelay = `${Math.random() * 5}s`;
+            flake.style.opacity = Math.random() * 0.8 + 0.2;
+            blizzard1.appendChild(flake);
+        }
+
+        // EXTREME BLIZZARD LAYER 2
+        const blizzard2 = document.getElementById('blizzard2');
+        for (let i = 0; i < 150; i++) {
+            const flake = document.createElement('div');
+            flake.className = 'absolute text-cyan-200 blizzard';
+            flake.textContent = '❄';
+            flake.style.left = `${Math.random() * 100}%`;
+            flake.style.top = `-${Math.random() * 30}vh`;
+            flake.style.fontSize = `${20 + Math.random() * 50}px`;
+            flake.style.animationDuration = `${1.5 + Math.random() * 4}s`;
+            flake.style.animationDelay = `${Math.random() * 3}s`;
+            flake.style.opacity = Math.random() * 0.6 + 0.3;
+            blizzard2.appendChild(flake);
+        }
+
+        // AVALANCHE CHUNKS
+        const avalancheContainer = document.getElementById('avalanche');
+        for (let i = 0; i < 30; i++) {
+            const chunk = document.createElement('div');
+            chunk.className = 'absolute bg-white rounded-lg avalanche shadow-2xl';
+            chunk.style.width = `${50 + Math.random() * 150}px`;
+            chunk.style.height = `${50 + Math.random() * 150}px`;
+            chunk.style.left = `${Math.random() * 100}%`;
+            chunk.style.animationDuration = `${3 + Math.random() * 4}s`;
+            chunk.style.animationDelay = `${Math.random() * 10}s`;
+            chunk.style.opacity = Math.random() * 0.5 + 0.3;
+            avalancheContainer.appendChild(chunk);
+        }
+
+        // INSANE GLITCH
+        setInterval(() => {
+            const header = document.getElementById('mainHeader');
+            header.classList.add('insaneGlitch');
+            setTimeout(() => {
+                header.classList.remove('insaneGlitch');
+            }, 300);
+        }, 2000 + Math.random() * 3000);
+
+        // COPY CONTRACT
+        function copyContract() {
+            const contractAddress = document.getElementById('contractAddress').textContent.trim();
+            navigator.clipboard.writeText(contractAddress);
+            const btn = document.getElementById('copyText');
+            btn.textContent = '✅ FROZEN SOLID!';
+            setTimeout(() => {
+                btn.textContent = '📋 COPY NOW';
+            }, 2500);
+        }
+
+        // CHAOTIC MEME GALLERY
+        const memeGallery = document.getElementById('memeGallery');
+        for (let i = 1; i <= 30; i++) {
+            const isLarge = i % 7 === 0;
+            const meme = document.createElement('div');
+            meme.className = `ice-texture savage-frost overflow-hidden meme-chaos transition-all cursor-pointer ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`;
+            meme.style.transform = `rotate(${Math.random() * 12 - 6}deg)`;
+            meme.innerHTML = `
+                <div class="w-full aspect-square flex items-center justify-center p-6">
+                    <img src="${i}.jpg" alt="Snowy Meme ${i}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="flex-col items-center justify-center text-center" style="display: none;">
+                        <div class="text-8xl mb-4 chaosFloat">❄️</div>
+                        <div class="text-gray-900 font-black text-3xl">MEME #${i}</div>
+                        <div class="text-cyan-600 font-black text-xl mt-2">${i}.jpg</div>
+                    </div>
+                </div>
+            `;
+            memeGallery.appendChild(meme);
+        }
+
+        // Random chaos effects
+        setInterval(() => {
+            const randomMeme = memeGallery.children[Math.floor(Math.random() * memeGallery.children.length)];
+            randomMeme.classList.add('wildShake');
+            setTimeout(() => {
+                randomMeme.classList.remove('wildShake');
+            }, 500);
+        }, 3000);
+    </script>
+</body>
+</html>
